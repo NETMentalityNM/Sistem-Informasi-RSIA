@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('hp_pas');
             $table->string('alamat_pas');
             $table->string('status_pasien');
+            $table->string('foto');
             $table->timestamps();
         });
     }
