@@ -30,7 +30,20 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pasien = new Pasien;
+
+        $pasien->no_kartu      = $request->NO_KARTU;
+        $pasien->nik_pas       = $request->NIK_PAS;
+        $pasien->nm_pas        = $request->NM_PAS;
+        $pasien->umur_pas      = $request->UMUR_PAS;
+        $pasien->hp_pas        = $request->HP_PAS;
+        $pasien->alamat_pas    = $request->ALAMAT_PAS;
+        $pasien->status_pasien = $request->STATUS_PAS;
+        $pasien->foto = "default.jpg";
+        $pasien->save();
+
+        return redirect('/pasien');
+
     }
 
     /**
@@ -46,7 +59,8 @@ class PasienController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pasien = Pasien::find($id);
+        return view('pasien.edit', compact('pasien'));
     }
 
     /**
@@ -54,7 +68,18 @@ class PasienController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pasien = Pasien::find($id);
+
+        $pasien->no_kartu      = $request->NO_KARTU;
+        $pasien->nik_pas       = $request->NIK_PAS;
+        $pasien->nm_pas        = $request->NM_PAS;
+        $pasien->umur_pas      = $request->UMUR_PAS;
+        $pasien->hp_pas        = $request->HP_PAS;
+        $pasien->alamat_pas    = $request->ALAMAT_PAS;
+        $pasien->status_pasien = $request->STATUS_PAS;
+        $pasien->save();
+
+        return redirect('/pasien');
     }
 
     /**
@@ -62,6 +87,9 @@ class PasienController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pasien = Pasien::find($id);
+        $pasien->delete();
+
+        return redirect('/pasien');
     }
 }

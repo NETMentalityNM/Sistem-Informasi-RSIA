@@ -77,25 +77,25 @@
           </a>
         </li>
         <li class="nav-item w-100">
-          <a class="nav-link" href="widgets.html">
+          <a class="nav-link" href="/ambil-obat">
             <i class="fe fe-layers fe-16"></i>
             <span class="ml-3 item-text">Pengambilan Obat</span>
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a href="#forms" data-toggle="" aria-expanded="false" class="toggle nav-link">
+          <a href="/obat" data-toggle="" aria-expanded="false" class="toggle nav-link">
             <i class="fe fe-credit-card fe-16"></i>
             <span class="ml-3 item-text">Obat</span>
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a href="#tables" data-toggle="" aria-expanded="false" class="toggle nav-link">
+          <a href="/rekam-medik" data-toggle="" aria-expanded="false" class="toggle nav-link">
             <i class="fe fe-grid fe-16"></i>
             <span class="ml-3 item-text">Rekam Medik</span>
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a href="#charts" data-toggle="" aria-expanded="false" class="toggle nav-link">
+          <a href="/resep" data-toggle="" aria-expanded="false" class="toggle nav-link">
             <i class="fe fe-pie-chart fe-16"></i>
             <span class="ml-3 item-text">Resep</span>
           </a>
@@ -120,13 +120,13 @@
       </p>
       <ul class="navbar-nav flex-fill w-100 mb-2">
         <li class="nav-item w-100">
-          <a class="nav-link" href="calendar.html">
+          <a class="nav-link" href="/pegawai">
             <i class="fe fe-calendar fe-16"></i>
             <span class="ml-3 item-text">Pegawai</span>
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a href="#contact" data-toggle="" aria-expanded="false" class="toggle nav-link">
+          <a href="/jabatan" data-toggle="" aria-expanded="false" class="toggle nav-link">
             <i class="fe fe-book fe-16"></i>
             <span class="ml-3 item-text">Jabatan</span>
           </a>
@@ -137,13 +137,13 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a href="#profile" data-toggle="" aria-expanded="false" class="toggle nav-link">
+          <a href="/poli" data-toggle="" aria-expanded="false" class="toggle nav-link">
             <i class="fe fe-user fe-16"></i>
             <span class="ml-3 item-text">Poli</span>
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a href="#fileman" data-toggle="" aria-expanded="false" class="toggle nav-link">
+          <a href="/jenis-dokter" data-toggle="" aria-expanded="false" class="toggle nav-link">
             <i class="fe fe-folder fe-16"></i>
             <span class="ml-3 item-text">Jenis Dokter</span>
           </a>

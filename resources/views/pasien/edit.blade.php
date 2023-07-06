@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('judul', 'Form Data Pasien')
+@section('judul' , 'Edit Data Pasien')
 @section('isi')
 <main role="main" class="main-content">
     <div class="container-fluid">
@@ -12,45 +12,45 @@
               <strong class="card-title">Data Lengkap Pasien</strong>
             </div>
             <div class="card-body">
-              <form method="POST" action="/pasien">
+              <form method="POST" action="/pasien/{{$pasien->id}}">
+                @method('PUT')
                 @csrf
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group mb-3">
                     <label for="simpleinput">No. Kartu</label>
-                    <input type="text" name="NO_KARTU" class="form-control" placeholder="Masukkan Nomor Kartu" required>
+                    <input type="text" name="NO_KARTU" value="{{$pasien->no_kartu}}" class="form-control" placeholder="Masukkan Nomor Kartu" required>
                   </div>
                   <div class="form-group mb-3">
                     <label for="example-email">NIK Pasien</label>
-                    <input type="text" name="NIK_PAS" name="example-email" class="form-control" placeholder="Masukkan NIK Pasien" required>
+                    <input type="text" name="NIK_PAS" value="{{$pasien->nik_pas}}" name="example-email" class="form-control" placeholder="Masukkan NIK Pasien" required>
                   </div>
                   <div class="form-group mb-3">
                     <label for="example-password">Nama Pasien</label>
-                    <input type="text" name="NM_PAS" class="form-control" placeholder="Masukkan Nama Pasien" required>
+                    <input type="text" name="NM_PAS" value="{{$pasien->nm_pas}}" class="form-control" placeholder="Masukkan Nama Pasien" required>
                   </div>
                   <div class="form-group mb-3">
                     <label for="example-palaceholder">Umur Pasien</label>
-                    <input type="number" name="UMUR_PAS" class="form-control" placeholder="Usia Pasien" required>
+                    <input type="number" name="UMUR_PAS" value="{{$pasien->umur_pas}}" class="form-control" placeholder="Usia Pasien" required>
                   </div>
                 </div> <!-- /.col -->
                 <div class="col-md-6">
                   <div class="form-group mb-3">
                     <label for="example-helping">Nomor Hp Pasien</label>
-                    <input type="text" name="HP_PAS" class="form-control" placeholder="Masukkan Nomor Hp Pasien" required>
+                    <input type="text" name="HP_PAS" value="{{$pasien->hp_pas}}" class="form-control" placeholder="Masukkan Nomor Hp Pasien" required>
                   </div>
                   <div class="form-group mb-3">
                     <label for="example-textarea">Alamat Pasien</label>
-                    <textarea class="form-control" name="ALAMAT_PAS" rows="4" placeholder="Masukkan Tempat Tinggal Pasien" required></textarea>
+                    <input type="text" class="form-control" name="ALAMAT_PAS" value="{{$pasien->alamat_pas}}" rows="4" placeholder="Masukkan Tempat Tinggal Pasien" required>  
                   </div>
                   <div class="form-group mb-3">
                     <label for="example-helping">Status Pasien</label>
-                    <input type="text" name="STATUS_PAS" class="form-control" placeholder="Masukkan Nomor Hp Pasien" required>
+                    <input type="text" name="STATUS_PAS" value="{{$pasien->status_pasien}}" class="form-control" placeholder="Masukkan Nomor Hp Pasien" required>
                     <span class="help-block"><small>Ket: Status bisa diedit kembali setelah diisi kondisi pasien saat ini</small></span>
                   </div>
-
                 </div>
               </div>
-              <button type="submit" class="btn mb-2 btn-primary">Tambahkan</button>
+              <button type="submit" class="btn mb-2 btn-primary">Edit</button>
               </form>
             </div>
           </div> <!-- end section -->
