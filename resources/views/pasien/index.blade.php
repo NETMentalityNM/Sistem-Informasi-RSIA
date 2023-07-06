@@ -30,6 +30,7 @@
             <table class="table datatables" id="dataTable-1">
               <thead>
                 <tr>
+                  <th>Data Entry</th>
                   <th>No Kartu</th>
                   <th>NIK Pasien</th>
                   <th>Nama</th>
@@ -43,7 +44,8 @@
               <tbody>
                 <tr>
                   @foreach ($pasien as $pasn)
-                  
+
+                  <td align="center">{{$nomor++}}</td>
                   <td>{{$pasn->no_kartu}}</td>
                   <td>{{$pasn->nik_pas}}</td>
                   <td>{{$pasn->nm_pas}}</td>
