@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pegawai;
+use App\Models\Poli;
+use App\Models\RekamMedik;
 use Illuminate\Http\Request;
 
 class RekamMedikController extends Controller
@@ -11,15 +14,20 @@ class RekamMedikController extends Controller
      */
     public function index()
     {
-        //
+        $nomor = 1;
+        $rekam_medik = RekamMedik::with('pegawai', 'poli')->get();
+        // dd($rekam_medik);
+        return view('rekam-medik.index', compact('nomor' ,'rekam_medik'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
+    {   
+        $rekam_medik = Pegawai::all();
+        $rekam_medik = Poli::all();
+        return view('rekam-medik.form', compact('rekam_medik'));
     }
 
     /**
@@ -27,7 +35,17 @@ class RekamMedikController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rekam_medik = new RekamMedik;
+
+        $rekam_medik->no_rekmed = $request->NO_REKMED;
+        $rekam_medik->no_kartu = $request->NO_KARTU;
+        $rekam_medik->tgl_berobat = $request->TGL_BEROBAT;
+        $rekam_medik->diagnosa = $request->DIAGNOSA;
+        $rekam_medik->pegawais_id = $request->nip;
+        $rekam_medik->polis_id = $request->id_poli;
+        $rekam_medik->save();
+
+        return redirect('/rekam-medik');
     }
 
     /**
@@ -43,7 +61,8 @@ class RekamMedikController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $rekam_medik = RekamMedik::find($id);
+        return view('rekam-medik.edit', compact('rekam_medik'));
     }
 
     /**
@@ -51,7 +70,17 @@ class RekamMedikController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $rekam_medik = RekamMedik::find($id);
+
+        $rekam_medik->no_rekmed = $request->NO_REKMED;
+        $rekam_medik->no_kartu = $request->NO_KARTU;
+        $rekam_medik->tgl_berobat = $request->TGL_BEROBAT;
+        $rekam_medik->diagnosa = $request->DIAGNOSA;
+        $rekam_medik->pegawais_id = $request->nip;
+        $rekam_medik->polis_id = $request->id_poli;
+        $rekam_medik->save();
+
+        return redirect('/rekam-medik');
     }
 
     /**
@@ -59,6 +88,9 @@ class RekamMedikController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $rekam_medik = RekamMedik::find($id);
+        $rekam_medik->delete();
+
+        return redirect('/rekam-medik');
     }
 }

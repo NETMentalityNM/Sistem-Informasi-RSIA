@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('umur_pegawai');
             $table->string('alamat_pegawai');
             $table->string('hp_pegawai');
-            $table->bigInteger('id_jabatan');
+            $table->bigInteger('jabatans_id');
             $table->timestamps();
         });
     }

@@ -99,9 +99,9 @@ Route::middleware('auth')->group(function() {
     //Manajemen Jabatan
     Route::get('/jabatan', [JabatanController::class, 'index']);
     Route::get('/jabatan/form', [JabatanController::class, 'create']);
-    Route::get('/jabatan', [JabatanController::class, 'store']);
+    Route::post('/jabatan', [JabatanController::class, 'store']);
     Route::get('/jabatan/edit/{id}', [JabatanController::class, 'edit']);
-    Route::get('/jabatan/{id}', [JabatanController::class, 'update']);
-    Route::get('/jabatan/{id}', [JabatanController::class, 'destroy']);
+    Route::put('/jabatan/{id}', [JabatanController::class, 'update']);
+    Route::delete('/jabatan/{id}', [JabatanController::class, 'destroy']);
 
 });

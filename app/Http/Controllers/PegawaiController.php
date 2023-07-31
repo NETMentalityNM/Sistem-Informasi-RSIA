@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
+
+use function Ramsey\Uuid\v1;
 
 class PegawaiController extends Controller
 {
@@ -11,7 +15,9 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        //
+        $nomor = 1;
+        $pegawai = Pegawai::all();
+        return view('pegawai.index', compact('nomor', 'pegawai'));
     }
 
     /**
@@ -19,7 +25,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        $pegawai = Jabatan::all();
+        return view('pegawai.form', compact('pegawai'));
     }
 
     /**
@@ -27,7 +34,19 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pegawai = new Pegawai;
+
+        // dd($request->all());
+
+        $pegawai->nip = $request->NIP;
+        $pegawai->nm_pegawai = $request->NM_PEGAWAI;
+        $pegawai->umur_pegawai = $request->UMUR_PEGAWAI;
+        $pegawai->alamat_pegawai = $request->ALAMAT_PEGAWAI;
+        $pegawai->hp_pegawai = $request->HP_PEGAWAI;
+        $pegawai->jabatans_id = $request->id_jabatan;
+        $pegawai->save();
+
+        return redirect('/pegawai');
     }
 
     /**
@@ -43,7 +62,9 @@ class PegawaiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pegawai = Pegawai::find($id);
+        $jabatan = Jabatan::all();
+        return view('pegawai.edit', compact('pegawai', 'jabatan'));
     }
 
     /**
