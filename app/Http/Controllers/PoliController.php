@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Poli;
 
 class PoliController extends Controller
 {
@@ -11,7 +12,10 @@ class PoliController extends Controller
      */
     public function index()
     {
-        //
+        $nomor = 1;
+        $poli = Poli::all();
+        return view('poli.index', compact('nomor', 'poli'));
+
     }
 
     /**
@@ -19,7 +23,7 @@ class PoliController extends Controller
      */
     public function create()
     {
-        //
+        return view('poli.form');
     }
 
     /**
@@ -27,7 +31,13 @@ class PoliController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $poli = new Poli;
+
+        $poli->id_poli = $request->ID_POLI;
+        $poli->nm_poli = $request->NM_POLI;
+        $poli->save();
+
+        return redirect('/poli');
     }
 
     /**
@@ -43,7 +53,8 @@ class PoliController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $poli = Poli::find($id);
+        return view('poli.edit', compact('poli'));
     }
 
     /**
@@ -51,7 +62,13 @@ class PoliController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $poli = Poli::find($id);
+        
+        $poli->id_poli = $request->ID_POLI;
+        $poli->nm_poli = $request->NM_POLI;
+        $poli->save();
+
+        return redirect('/poli');
     }
 
     /**
@@ -59,6 +76,9 @@ class PoliController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $poli = Poli::find($id);
+        $poli->delete();
+
+        return redirect('/poli');
     }
 }

@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class PengambilanObat extends Model
 {
-    use HasFactory;
+    public function resep()
+    {
+        return $this->hasOne(Resep::class, "no_resep", "no_resep");
+    }
+    public function pegawai()
+    {
+        return $this->hasOne(Pegawai::class, "nip", "nip");
+    }
+    // public function Reseps()
+    // {
+    //     return $this->hasOne(Resep::class, "no_resep", "no_resep");
+    // }
+
+    
 }

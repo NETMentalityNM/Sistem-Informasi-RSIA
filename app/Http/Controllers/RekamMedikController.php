@@ -28,6 +28,7 @@ class RekamMedikController extends Controller
         $rekam_medik = Pegawai::all();
         $rekam_medik = Poli::all();
         return view('rekam-medik.form', compact('rekam_medik'));
+        // return redirect('rekam-medik.form2');
     }
 
     /**
@@ -41,9 +42,11 @@ class RekamMedikController extends Controller
         $rekam_medik->no_kartu = $request->NO_KARTU;
         $rekam_medik->tgl_berobat = $request->TGL_BEROBAT;
         $rekam_medik->diagnosa = $request->DIAGNOSA;
-        $rekam_medik->pegawais_id = $request->nip;
         $rekam_medik->polis_id = $request->id_poli;
+        $rekam_medik->nip = $request->nip;
         $rekam_medik->save();
+        // $rekam_medik->saveid_poli();
+        
 
         return redirect('/rekam-medik');
     }
@@ -62,7 +65,9 @@ class RekamMedikController extends Controller
     public function edit(string $id)
     {
         $rekam_medik = RekamMedik::find($id);
-        return view('rekam-medik.edit', compact('rekam_medik'));
+        // $rekam_medik = Pegawai::find();
+        // $rekam_medik = Poli::find();
+        return view('rekam-medik.edit', compact('rekam_medik',));
     }
 
     /**
@@ -76,7 +81,7 @@ class RekamMedikController extends Controller
         $rekam_medik->no_kartu = $request->NO_KARTU;
         $rekam_medik->tgl_berobat = $request->TGL_BEROBAT;
         $rekam_medik->diagnosa = $request->DIAGNOSA;
-        $rekam_medik->pegawais_id = $request->nip;
+        $rekam_medik->nip = $request->nip;
         $rekam_medik->polis_id = $request->id_poli;
         $rekam_medik->save();
 

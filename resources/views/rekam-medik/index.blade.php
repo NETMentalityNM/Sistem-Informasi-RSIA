@@ -50,7 +50,7 @@
                   <td>{{$r_medik->tgl_berobat}}</td>
                   <td>{{$r_medik->diagnosa}}</td>
                   <td>{{$r_medik->nip}}</td>
-                  <td>{{$r_medik->poli->id_poli}}</td>
+                  <td>{{$r_medik->polis_id}}</td>
                 
                   <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="text-muted sr-only">Action</span>
@@ -58,7 +58,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                       <a class="dropdown-item" href="/rekam-medik/edit/{{$r_medik->id}}">Edit</a>
                       <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-full{{$r_medik->id}}" href="">Remove</button>
-                      <a class="dropdown-item" href="#">Assign</a>
+                      
                     </div>
                   </td>
                 </tr>

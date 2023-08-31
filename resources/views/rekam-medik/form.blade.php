@@ -28,19 +28,29 @@
                     <label for="example-password">Tanggal Berobat</label>
                     <input type="date" name="TGL_BEROBAT" class="form-control" required>
                   </div>
+                </div> <!-- /.col -->
+                <div class="col-md-6">
                   <div class="form-group mb-3">
                     <label for="example-palaceholder">Diagnosa</label>
                     <input type="text" name="DIAGNOSA" class="form-control" placeholder="Diagnosa pasien" required>
                   </div>
-                </div> <!-- /.col -->
-                <div class="col-md-6">
                   <div class="form-group mb-3">
-                    <label for="example-helping">NIP</label>
-                    <input type="text" name="NIP" class="form-control" placeholder="Masukkan Nomor Induk Pegawai" required>
+                    <label for="example-textarea">NIP</label>
+                    <select name="nip" class="form-control" id="" >
+                        <option value="">--Pilih NIP--</option>
+                        @foreach ($rekam_medik as $data)
+                        <option value="{{$data->id}}">{{$data->nip}}  {{$data->nm_pegawai}}</option>
+                        @endforeach
+                    </select>
                   </div>
                   <div class="form-group mb-3">
                     <label for="example-textarea">ID Poli</label>
-                    <input class="form-control" name="ID_POLI" rows="4" placeholder="Masukkan ID Poli" required></input>
+                    <select name="id_poli" class="form-control" id="" >
+                        <option value="">--Pilih ID--</option>
+                        @foreach ($rekam_medik as $item)
+                        <option value="{{$item->id}}">{{$item->id_poli}}  {{$item->nm_poli}}</option>
+                        @endforeach
+                    </select>
                   </div>
                 </div>
               </div>

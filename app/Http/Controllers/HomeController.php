@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Obat;
+use App\Models\Pegawai;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('beranda');
+        $pegawai = Pegawai::count();
+        $obat    = Obat::count();
+
+        return view('beranda', compact('pegawai', 'obat'));
+    }
+
+    public function user()
+    {   
+        $user = User::all();
+        return view('layouts.master_2', compact('user'));
     }
 }

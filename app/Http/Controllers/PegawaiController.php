@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jabatan;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use Image;
 
 use function Ramsey\Uuid\v1;
 
@@ -54,7 +55,7 @@ class PegawaiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -72,7 +73,17 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pegawai = Pegawai::find($id);
+
+        $pegawai->nip = $request->NIP;
+        $pegawai->nm_pegawai = $request->NM_PEGAWAI;
+        $pegawai->umur_pegawai = $request->UMUR_PEGAWAI;
+        $pegawai->alamat_pegawai = $request->ALAMAT_PEGAWAI;
+        $pegawai->hp_pegawai = $request->HP_PEGAWAI;
+        $pegawai->jabatans_id = $request->id_jabatan;
+        $pegawai->save();
+
+        return redirect('/pegawai');
     }
 
     /**
@@ -80,6 +91,10 @@ class PegawaiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pegawai = Pegawai::find($id);
+        $pegawai->delete();
+
+        return redirect('/pegawai');
     }
+
 }

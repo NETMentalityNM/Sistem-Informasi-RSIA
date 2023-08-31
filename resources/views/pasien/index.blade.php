@@ -25,18 +25,15 @@
       <div class="col-md-12">
         <div class="card shadow">
           <div class="card-body">
-            <a href="/pasien/form" class="btn mb-3 btn-outline-info">Tambah Data</a>
+            <a href="/pasien/form"  class="btn mb-4 btn-outline-info">Tambah Data</a>
             <!-- table -->
             <table class="table datatables" id="dataTable-1">
               <thead>
                 <tr>
                   <th>Data Entry</th>
+                  <th width="10%">Foto Pasien</th>
                   <th>No Kartu</th>
-                  <th>NIK Pasien</th>
-                  <th>Nama</th>
-                  <th>Umur</th>
-                  <th>No Hp</th>
-                  <th>Alamat</th>
+                  <th>Nama</th>                                  
                   <th>Status Pasien</th>
                   <th>Action</th>
                 </tr>
@@ -46,12 +43,11 @@
                   @foreach ($pasien as $pasn)
 
                   <td align="center">{{$nomor++}}</td>
-                  <td>{{$pasn->no_kartu}}</td>
-                  <td>{{$pasn->nik_pas}}</td>
-                  <td>{{$pasn->nm_pas}}</td>
-                  <td>{{$pasn->umur_pas}}</td>
-                  <td>{{$pasn->hp_pas}}</td>
-                  <td>{{$pasn->alamat_pas}}</td>
+                  <td>
+                    <img src="{{asset('foto-pasien/' . $pasn->foto)}}" alt="foto" srcset="" height="85px" width="90px">
+                  </td>
+                  <td>{{$pasn->no_kartu}}</td>                 
+                  <td>{{$pasn->nm_pas}}</td>                                
                   <td>{{$pasn->status_pasien}}</td>
                   
                   
@@ -59,12 +55,30 @@
                       <span class="text-muted sr-only">Action</span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
+                      <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-full1{{$pasn->id}}">Detail</button>
                       <a class="dropdown-item" href="/pasien/edit/{{$pasn->id}}">Edit</a>
                       <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-full{{$pasn->id}}" href="">Remove</button>
-                      <a class="dropdown-item" href="#">Assign</a>
                     </div>
                   </td>
                 </tr>
+                <div class="modal fade modal-full" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-full1{{$pasn->id}}">
+                  {{-- <button aria-label="" type="button" class="close px-lg" data-dismiss="modal" aria-hidden="true"> --}}
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body text-center justify-content-between">
+                        <h3 class="modal-title"> Detail Pasien </h3>
+                        <p> Detail Pasien atas nama  <b>{{$pasn->nm_pas}} </b></p>                          
+                        <p class="col-3">NIK Pasien <br> <hr > {{$pasn->nik_pas}} </p>
+                        <p class="col-3">Umur <br> <hr > {{$pasn->umur_pas}}</p>
+                        <p class="col-3">No. Hp <br> <hr> {{$pasn->hp_pas}} </p>
+                        <p class="col-3">Alamat <br> <hr> {{$pasn->alamat_pas}} </p>
+                        <button class="btn btn-outline-secondary btn-lg mb-2 my-4 my-sm-0" type="button" data-dismiss="modal">Tutup</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
 
                 <div class="modal fade modal-full" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-full{{$pasn->id}}">
                   {{-- <button aria-label="" type="button" class="close px-lg" data-dismiss="modal" aria-hidden="true"> --}}
@@ -85,11 +99,13 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>    
                 @endforeach
-              </tbody>
                 
-            </table>
+              </tbody>
+          </table>
+          
+          {{$pasien->links()}}
           </div>
         </div>
       
@@ -132,5 +148,17 @@
     }
     gtag('js', new Date());
     gtag('config', 'UA-56159088-1');
+  </script>
+  <script type="text/javascript">
+    var readFoto = function(event) {
+      var input = event.target;
+      var reader = new FileReader();
+      reader.onload = function(){
+        var dataURL = reader.result;
+        var output  = document.getElementById('output');
+        output.src  = dataURL;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   </script>
 @endsection

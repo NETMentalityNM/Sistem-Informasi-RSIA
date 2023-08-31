@@ -58,7 +58,6 @@
                     <div class="dropdown-menu dropdown-menu-right">
                       <a class="dropdown-item" href="/pegawai/edit/{{$pgw->id}}">Edit</a>
                       <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-full{{$pgw->id}}" href="">Remove</button>
-                      <a class="dropdown-item" href="#">Assign</a>
                     </div>
                   </td>
                 </tr>
@@ -72,7 +71,7 @@
                       <div class="modal-body text-center justify-content-between">
                         <h3 class="modal-title"><i> Peringatan! </i></h3>
                         <p> Anda Yakin menghapus Data Pasien atas nama </p>
-                        <p>{{$pgw->nm_pas}}</p>
+                        <p>{{$pgw->nm_pegawai}}</p>
                         <form action="/pegawai/{{$pgw->id}}" method="POST" class="form-inline justify-content-center">
                           @method('DELETE')
                           @csrf

@@ -12,7 +12,7 @@
               <strong class="card-title">Data Lengkap Pasien</strong>
             </div>
             <div class="card-body">
-              <form method="POST" action="/pasien">
+              <form method="POST" action="/pasien" enctype="multipart/form-data">
                 @csrf
               <div class="row">
                 <div class="col-md-6">
@@ -32,12 +32,12 @@
                     <label for="example-palaceholder">Umur Pasien</label>
                     <input type="number" name="UMUR_PAS" class="form-control" placeholder="Usia Pasien" required>
                   </div>
-                </div> <!-- /.col -->
-                <div class="col-md-6">
                   <div class="form-group mb-3">
                     <label for="example-helping">Nomor Hp Pasien</label>
                     <input type="text" name="HP_PAS" class="form-control" placeholder="Masukkan Nomor Hp Pasien" required>
                   </div>
+                </div> <!-- /.col -->
+                <div class="col-md-6">
                   <div class="form-group mb-3">
                     <label for="example-textarea">Alamat Pasien</label>
                     <textarea class="form-control" rows="3" name="ALAMAT_PAS" rows="4" placeholder="Masukkan Tempat Tinggal Pasien" required></textarea>
@@ -47,7 +47,12 @@
                     <input type="text" name="STATUS_PAS" class="form-control" placeholder="Masukkan Nomor Hp Pasien" required>
                     <span class="help-block"><small>Ket: Status bisa diedit kembali setelah diisi kondisi pasien saat ini</small></span>
                   </div>
-
+                  <div class="form-group mb-3">
+                    <label for="example-helping">Foto Pasien</label>
+                    <input type="file" onchange="readFoto(event)" name="foto" id="foto" class="form-control"  required>
+                  </div>
+                  
+                  <img id="output"  style="width: 90px;">
                 </div>
               </div>
               <button type="submit" class="btn mb-2 btn-primary">Tambahkan</button>
@@ -181,4 +186,16 @@
       </div>
     </div>
   </main>
+  <script type="text/javascript">
+    var readFoto = function(event) {
+      var input = event.target;
+      var reader = new FileReader();
+      reader.onload = function(){
+        var dataURL = reader.result;
+        var output  = document.getElementById('output');
+        output.src  = dataURL;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  </script>
 @endsection

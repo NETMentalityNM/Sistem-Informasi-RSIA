@@ -1,3 +1,4 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <nav class="topnav navbar navbar-light">
     <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
       <i class="fe fe-menu navbar-toggler-icon"></i>
@@ -22,13 +23,19 @@
           <span class="dot dot-md bg-success"></span>
         </a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown mb-4">
         <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="avatar avatar-sm mt-2">
             <img src="{{asset('tinydash-master/dark/assets/avatars/face-1.jpg')}}" alt="..." class="avatar-img rounded-circle">
           </span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdownMenuLink">
+          <a class="flex-grow-3">
+            <i class='bx bxs-user-circle bx-flashing-hover fe-24 bx-flip-horizontal' aria-rowspan="2"></i>
+            <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
+            <small class="text-muted">Admin</small>
+          </a>
+          <br class="pb-3">
           <a class="dropdown-item" href="#">Profile</a>
           <a class="dropdown-item" href="#">Settings</a>
           <a class="dropdown-item" href="#">Activities</a>
@@ -61,7 +68,7 @@
       <ul class="navbar-nav flex-fill w-100 mb-2">
         <li class="nav-item ">
           <a href="{{route('dashboard')}}" data-toggle="" aria-expanded="false" class="toggle nav-link">
-            <i class="fe fe-home fe-16"></i>
+            <i class='bx bx-home bx-flashing-hover fe-24' ></i>
             <span class="ml-3 item-text">Dashboard</span><span class="sr-only">(current)</span>
           </a>
         </li>
@@ -72,32 +79,32 @@
       <ul class="navbar-nav flex-fill w-100 mb-2">
         <li class="nav-item dropdown">
           <a href="/pasien" data-toggle="" aria-expanded="false" class="toggle nav-link">
-            <i class="fe fe-box fe-16"></i>
-            <span class="ml-3 item-text">Pasien</span>
+            <i class='bx bx-user bx-flashing-hover fe-24'></i>
+            <span class="ml-3 item-text bx-flashing-hover">Pasien</span>
           </a>
         </li>
         <li class="nav-item w-100">
           <a class="nav-link" href="/ambil-obat">
-            <i class="fe fe-layers fe-16"></i>
-            <span class="ml-3 item-text">Pengambilan Obat</span>
+            <i class='bx bx-capsule bx-tada-hover fe-24'></i>
+            <span class="ml-3 item-text bx-flashing-hover">Pengambilan Obat</span>
           </a>
         </li>
         <li class="nav-item dropdown">
           <a href="/obat" data-toggle="" aria-expanded="false" class="toggle nav-link">
-            <i class="fe fe-credit-card fe-16"></i>
-            <span class="ml-3 item-text">Obat</span>
+            <i class='bx bx-archive bx-flashing-hover fe-24' ></i>
+            <span class="ml-3 item-text bx-flashing-hover">Obat</span>
           </a>
         </li>
         <li class="nav-item dropdown">
           <a href="/rekam-medik" data-toggle="" aria-expanded="false" class="toggle nav-link">
-            <i class="fe fe-grid fe-16"></i>
-            <span class="ml-3 item-text">Rekam Medik</span>
+            <i class='bx bx-library bx-fade-right-hover fe-24' ></i>
+            <span class="ml-3 item-text bx-flashing-hover">Rekam Medik</span>
           </a>
         </li>
         <li class="nav-item dropdown">
           <a href="/resep" data-toggle="" aria-expanded="false" class="toggle nav-link">
-            <i class="fe fe-pie-chart fe-16"></i>
-            <span class="ml-3 item-text">Resep</span>
+            <i class='bx bx-food-menu bx-burst-hover fe-24' ></i>
+            <span class="ml-3 item-text bx-flashing-hover">Resep</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="charts">
             <li class="nav-item">
@@ -121,14 +128,14 @@
       <ul class="navbar-nav flex-fill w-100 mb-2">
         <li class="nav-item w-100">
           <a class="nav-link" href="/pegawai">
-            <i class="fe fe-calendar fe-16"></i>
-            <span class="ml-3 item-text">Pegawai</span>
+            <i class='bx bx-user-circle bx-burst-hover fe-24' ></i>
+            <span class="ml-3 item-text bx-flashing-hover">Pegawai</span>
           </a>
         </li>
         <li class="nav-item dropdown">
           <a href="/jabatan" data-toggle="" aria-expanded="false" class="toggle nav-link">
-            <i class="fe fe-book fe-16"></i>
-            <span class="ml-3 item-text">Jabatan</span>
+            <i class='bx bx-objects-vertical-bottom bx-burst-hover fe-24'></i>
+            <span class="ml-3 item-text bx-flashing-hover">Jabatan</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="contact">
             <a class="nav-link pl-3" href="./contacts-list.html"><span class="ml-1">Contact List</span></a>
@@ -138,16 +145,17 @@
         </li>
         <li class="nav-item dropdown">
           <a href="/poli" data-toggle="" aria-expanded="false" class="toggle nav-link">
-            <i class="fe fe-user fe-16"></i>
-            <span class="ml-3 item-text">Poli</span>
+            <i class='bx bx-user-plus bx-flashing-hover fe-24'></i>
+            <span class="ml-3 item-text bx-flashing-hover">Poli</span>
           </a>
         </li>
         <li class="nav-item dropdown">
           <a href="/jenis-dokter" data-toggle="" aria-expanded="false" class="toggle nav-link">
-            <i class="fe fe-folder fe-16"></i>
-            <span class="ml-3 item-text">Jenis Dokter</span>
+            <i class='bx bx-injection bx-tada-hover fe-24' ></i>
+            <span class="ml-3 item-text bx-flashing-hover">Jenis Dokter</span>
           </a>
         </li>
       </ul>
     </nav>
   </aside>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>

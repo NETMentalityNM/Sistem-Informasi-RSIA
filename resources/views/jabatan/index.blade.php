@@ -26,6 +26,7 @@
         <div class="card shadow">
           <div class="card-body">
             <a href="/jabatan/form" class="btn mb-3 btn-outline-info">Tambah Data</a>
+        
             <!-- table -->
             <table class="table datatables" id="dataTable-1">
               <thead>
@@ -50,7 +51,6 @@
                     <div class="dropdown-menu dropdown-menu-right">
                       <a class="dropdown-item" href="/jabatan/edit/{{$jbt->id}}">Edit</a>
                       <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-full{{$jbt->id}}" href="">Remove</button>
-                      <a class="dropdown-item" href="#">Assign</a>
                     </div>
                   </td>
                 </tr>
@@ -79,6 +79,8 @@
               </tbody>
                 
             </table>
+            {{-- <div class="row">{{$jabatan->links()}}</div> --}}
+            {{$jabatan->links()}}
           </div>
         </div>
       

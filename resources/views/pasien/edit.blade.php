@@ -12,7 +12,7 @@
               <strong class="card-title">Data Lengkap Pasien</strong>
             </div>
             <div class="card-body">
-              <form method="POST" action="/pasien/{{$pasien->id}}">
+              <form method="POST" action="/pasien/{{$pasien->id}}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
               <div class="row">
@@ -48,6 +48,14 @@
                     <input type="text" name="STATUS_PAS" value="{{$pasien->status_pasien}}" class="form-control" placeholder="Masukkan Nomor Hp Pasien" required>
                     <span class="help-block"><small>Ket: Status bisa diedit kembali setelah diisi kondisi pasien saat ini</small></span>
                   </div>
+                  <div class="form-group mb-3">
+                    <label for="example-helping">Foto Pasien</label>
+                    <input type="file" onchange="readFoto(event)" name="foto" value="{{$pasien->foto}}" id="foto" class="form-control"  required>
+                  </div>
+                  
+                  <img id="output"  style="width: 90px;">
+
+                </div>
                 </div>
               </div>
               <button type="submit" class="btn mb-2 btn-primary">Edit</button>

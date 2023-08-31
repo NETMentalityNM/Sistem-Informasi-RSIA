@@ -54,7 +54,6 @@
                     <div class="dropdown-menu dropdown-menu-right">
                       <a class="dropdown-item" href="/obat/edit/{{$obt->id}}">Edit</a>
                       <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-full{{$obt->id}}" href="">Remove</button>
-                      <a class="dropdown-item" href="#">Assign</a>
                     </div>
                   </td>
                 </tr>

@@ -43,15 +43,15 @@
                     <label for="example-textarea">ID Jabatan</label>
                     <select name="id_jabatan" class="form-control" id="" >
                         <option value="">--Pilih ID--</option>
-                        {{-- @foreach ($pegawai as $item)
-                        <option value="{{$item->id}}">{{$item->id_jabatan}} ++ {{$item->posisi_jabatan}}</option>
-                        @endforeach --}}
+                        @foreach ($jabatan as $item)
+                        <option value="{{$item->id}}" @selected($pegawai->jabatans_id == $item->id)> {{$item->id_jabatan}} ++ {{$item->posisi_jabatan}}</option>
+                        @endforeach
                     </select>
                   </div>
 
                 </div>
               </div>
-              <button type="submit" class="btn mb-2 btn-primary">Tambahkan</button>
+              <button type="submit" class="btn mb-2 btn-primary">Edit</button>
               </form>
             </div>
           </div> <!-- end section -->

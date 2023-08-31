@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tgl_berobat');
             $table->string('diagnosa');
             $table->bigInteger('nip');
-            $table->bigInteger('id_poli');
+            $table->bigInteger('polis_id');
             $table->timestamps();
         });
     }

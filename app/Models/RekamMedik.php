@@ -11,11 +11,16 @@ class RekamMedik extends Model
 
     public function pegawai()
     {
+        // return $this->belongsToMany(Pegawai::class);
         return $this->hasOne(Pegawai::class, "nip", "nip");
     }
 
     public function poli()
     {
-        return $this->hasOne(Poli::class, "id", "id_poli");
+        return $this->hasOne(Poli::class, "id_poli", "polis_id");
+    }
+    public function resep()
+    {
+        return $this->belongsTo(Resep::class);
     }
 }

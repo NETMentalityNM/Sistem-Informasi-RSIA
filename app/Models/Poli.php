@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Poli extends Model
 {
-    use HasFactory;
+    public function rekamMedik()
+    {
+        return $this->belongsTo(RekamMedik::class);
+    }
 }

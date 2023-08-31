@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PengambilanObat;
+use App\Models\Resep;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 
 class PengambilanObatController extends Controller
@@ -11,7 +14,9 @@ class PengambilanObatController extends Controller
      */
     public function index()
     {
-        //
+        $nomor = 1;
+        $ambil_obat = PengambilanObat::all();
+        return view('pengambilan-obat.index', compact('ambil_obat'));
     }
 
     /**
@@ -19,7 +24,9 @@ class PengambilanObatController extends Controller
      */
     public function create()
     {
-        //
+        $ambil_obat = Pegawai::all();
+        $ambil_obat = Resep::all();
+        return view('pengambilan-obat.form', compact('ambil_obat'));
     }
 
     /**
@@ -27,7 +34,16 @@ class PengambilanObatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ambil_obat = new PengambilanObat;
+
+        $ambil_obat->id_ambil = $request->ID_AMBIL;
+        $ambil_obat->tgl = $request->TGL;
+        $ambil_obat->nip = $request->nip;
+        $ambil_obat->no_resep = $request->no_resep;
+        $ambil_obat->ket = $request->KET;
+        $ambil_obat->save();
+
+        return redirect('/ambil-obat');
     }
 
     /**
@@ -43,7 +59,10 @@ class PengambilanObatController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ambil_obat = PengambilanObat::find($id);
+        $ambil_obat = Pegawai::all();
+        $ambil_obat = Resep::all();
+        return view('pengambilan-obat.edit', compact('ambi_obat'));
     }
 
     /**
@@ -51,7 +70,16 @@ class PengambilanObatController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ambil_obat = PengambilanObat::find($id);
+
+        $ambil_obat->id_ambil = $request->ID_AMBIL;
+        $ambil_obat->tgl = $request->TGL;
+        $ambil_obat->nip = $request->nip;
+        $ambil_obat->no_resep = $request->no_resep;
+        $ambil_obat->ket = $request->KET;
+        $ambil_obat->save();
+
+        return redirect('/ambil-obat');
     }
 
     /**
@@ -59,6 +87,9 @@ class PengambilanObatController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $ambil_obat = PengambilanObat::find($id);
+        $ambil_obat->delete();
+
+        return redirect('/ambil-obat');
     }
 }

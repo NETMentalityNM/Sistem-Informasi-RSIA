@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JabatanController extends Controller
 {
@@ -14,6 +15,8 @@ class JabatanController extends Controller
     {
         $nomor = 1;
         $jabatan = Jabatan::all();
+        // $jabatan = Jabatan::simplePaginate(5);
+        $jabatan = Jabatan::where('id_jabatan', '>', 100)->paginate(5);
         return view('jabatan.index', compact('nomor', 'jabatan'));
     }
 

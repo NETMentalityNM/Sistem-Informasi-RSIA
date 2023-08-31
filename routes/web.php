@@ -10,6 +10,8 @@ use App\Http\Controllers\PengambilanObatController;
 use App\Http\Controllers\JenisDokterController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\UsersController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,26 +25,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.master');
-});
-
+// Route::get('/aku', function () {
+//     return view('layouts.master');
+// });
+//
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+Route::get('/rsia',[UserController::class, 'user']);
+
+Route::POST('https://language.googleapis.com/v1/documents:analyzeEntities?key=AIzaSyAsVcS6nGaqjVsNxdzAkxOusPo2ipiBpOE');
+
+
+
+//Route Tampilan Controller
+
 
 Route::middleware('auth')->group(function() {
     //Manajemen Pasien Route
-    Route::get('/pasien', [PasienController::class, 'index']);
-    Route::get('/pasien/form', [PasienController::class, 'create']);
-    Route::post('/pasien', [PasienController::class, 'store']);
+    Route::get('/pasien',           [PasienController::class, 'index']);
+    Route::get('/pasien/form',      [PasienController::class, 'create']);
+    Route::post('/pasien',          [PasienController::class, 'store']);
     Route::get('/pasien/edit/{id}', [PasienController::class, 'edit']);
-    Route::put('/pasien/{id}', [PasienController::class, 'update']);
-    Route::delete('/pasien/{id}', [PasienController::class, 'destroy']);
+    Route::put('/pasien/{id}',      [PasienController::class, 'update']);
+    Route::delete('/pasien/{id}',   [PasienController::class, 'destroy']);
 
     //Manajemen Rekam-Medik
     Route::get('/rekam-medik', [RekamMedikController::class, 'index']);
     Route::get('/rekam-medik/form', [RekamMedikController::class, 'create']);
+    // Route::post('/rekam-medik/form2', [RekamMedikController::class, 'create']);
     Route::post('/rekam-medik', [RekamMedikController::class, 'store']);
     Route::get('/rekam-medik/edit/{id}', [RekamMedikController::class, 'edit']);
     Route::put('/rekam-medik/{id}', [RekamMedikController::class, 'update']);
