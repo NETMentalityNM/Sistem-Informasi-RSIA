@@ -7,6 +7,8 @@ use App\Models\RekamMedik;
 use App\Models\Pegawai;
 use App\Models\Obat;
 use Illuminate\Http\Request;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+
 use PDF;
 use Image;
 
@@ -15,11 +17,17 @@ class ResepController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $nomor = 1;
+        if ($request->has('search')) {
+            $jabatan = Resep::where('no_resep','LIKE', '%'.$request->search.'%')->paginate(5);
+        }
+        else {
+            $jabatan = Resep::paginate(5);                
+        }
         $resep = Resep::all();
-        return view('resep.index', compact('nomor', 'resep'));
+        return view('super_admin.resep.index', compact('nomor', 'resep'));
     }
 
     /**
@@ -30,7 +38,7 @@ class ResepController extends Controller
         $resep = RekamMedik::all();
         $resep = Obat::all();
         $resep = Pegawai::all();
-        return view('resep.form', compact('resep'));
+        return view('super_admin.resep.form', compact('resep'));
     }
 
     /**
@@ -38,9 +46,12 @@ class ResepController extends Controller
      */
     public function store(Request $request)
     {
+        $gen_noResep = IdGenerator::generate(['table' => 'reseps','field' => 'no_resep', 'length' => 8, 'prefix' => 'PP-']);
+
+
         $resep = new Resep;
 
-        $resep->no_resep = $request->NO_RESEP;
+        $resep->no_resep = $gen_noResep;
         $resep->no_rekmed = $request->no_rekmed;
         $resep->kd_obat = $request->kd_obat;
         $resep->jumlah = $request->JUMLAH;
@@ -67,7 +78,7 @@ class ResepController extends Controller
         $resep = RekamMedik::all();
         $resep = Obat::all();
         $resep = Pegawai::all();
-        return view('resep.edit', compact('resep'));
+        return view('super_admin.resep.edit', compact('resep'));
     }
 
     /**

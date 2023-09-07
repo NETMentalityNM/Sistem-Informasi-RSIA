@@ -16,7 +16,7 @@ class JenisDokterController extends Controller
     {
         $nomor = 1;
         $jenis_dokter = JenisDokter::all();
-        return view('jenis-dokter.index', compact('nomor', 'jenis_dokter')); 
+        return view('super_admin.jenis-dokter.index', compact('nomor', 'jenis_dokter')); 
     }
 
     /**
@@ -26,7 +26,7 @@ class JenisDokterController extends Controller
     {
         $jenis_dokter = Pegawai::all();
         $jenis_dokter = Poli::all();
-        return view('jenis-dokter.form', compact('jenis_dokter'));
+        return view('super_admin.jenis-dokter.form', compact('jenis_dokter'));
 
     }
 

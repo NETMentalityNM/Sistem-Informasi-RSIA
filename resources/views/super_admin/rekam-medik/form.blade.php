@@ -1,45 +1,63 @@
 @extends('layouts.master')
-@section('judul', 'Form Data Obat')
+@section('judul', 'Form Rekam Medik')
 @section('isi')
 <main role="main" class="main-content">
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-12">
-          <h2 class="page-title">Form Data Obat</h2>
+          <h2 class="page-title">Form Rekam Medik</h2>
+          <p class="text-muted">Disini Anda mengisi data Rekam Medik yang dialami oleh pasien</p>
           <div class="card shadow mb-4">
             <div class="card-header">
-              <strong class="card-title">Data Lengkap Obat</strong>
+              <strong class="card-title">Data Lengkap Pasien</strong>
             </div>
             <div class="card-body">
-              <form method="POST" action="/obat">
+              <form method="POST" action="/rekam-medik">
                 @csrf
               <div class="row">
                 <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label for="simpleinput">No. Kartu</label>
+                      <select name="no_kartu" class="form-control" id="" >
+                        <option value="">--Pilih No_Kartu--</option>
+                        @foreach ($rekam_medik as $data)
+                        <option value="{{$data->id}}">{{$data->no_kartu}}  </option>
+                        @endforeach
+                    </select>                    
+                    </div>
                   <div class="form-group mb-3">
-                    <label for="simpleinput">Kode Obat</label>
-                    <input type="text" name="KD_OBAT" class="form-control" placeholder="Masukkan Nomor Kartu" required>
+                    <label for="example-password">Tanggal Berobat</label>
+                    <input type="date" name="TGL_BEROBAT" class="form-control" required>
                   </div>
                   <div class="form-group mb-3">
-                    <label for="example-email">Nama Obat</label>
-                    <input type="text" name="NM_OBAT" name="example-email" class="form-control" placeholder="Masukkan NIK Pasien" required>
+                    <label for="example-palaceholder">Diagnosa</label>
+                    <input type="text" name="DIAGNOSA" class="form-control" placeholder="Diagnosa pasien" required>
                   </div>
                 </div> <!-- /.col -->
                 <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label for="example-password">Tanggal Kadarluasa</label>
-                      <input type="date" name="TGL_KADARLUASA" class="form-control" placeholder="Masukkan Nama Pasien" required>
-                    </div>
-                    <div class="form-group mb-3">
-                      <label for="example-palaceholder">Satuan</label>
-                      <input type="text" name="SATUAN" class="form-control" placeholder="Usia Pasien" required>
-                    </div>
-                  
-
+                  <div class="form-group mb-3">
+                    <label for="example-textarea">NIP</label>
+                    <select name="nip" class="form-control" id="" >
+                        <option value="">--Pilih NIP--</option>
+                        @foreach ($rekam_medik as $data)
+                        <option value="{{$data->id}}">{{$data->nip}}  {{$data->nm_pegawai}}</option>
+                        @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="example-textarea">ID Poli</label>
+                    <select name="id_poli" class="form-control" id="" >
+                        <option value="">--Pilih ID--</option>
+                        @foreach ($rekam_medik as $item)
+                        <option value="{{$item->id}}">{{$item->id_poli}}  {{$item->nm_poli}}</option>
+                        @endforeach
+                    </select>
+                  </div>
                 </div>
               </div>
               <button type="submit" class="btn mb-2 btn-primary">Tambahkan</button>
-            </form>
-          </div>
+              </form>
+            </div>
           </div> <!-- end section -->
         </div> <!-- .col-12 -->
       </div> <!-- .row -->

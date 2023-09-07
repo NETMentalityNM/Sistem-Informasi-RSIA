@@ -6,6 +6,8 @@ use App\Models\PengambilanObat;
 use App\Models\Resep;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+
 
 class PengambilanObatController extends Controller
 {
@@ -16,7 +18,7 @@ class PengambilanObatController extends Controller
     {
         $nomor = 1;
         $ambil_obat = PengambilanObat::all();
-        return view('pengambilan-obat.index', compact('ambil_obat'));
+        return view('super_admin.pengambilan-obat.index', compact('ambil_obat'));
     }
 
     /**
@@ -26,7 +28,7 @@ class PengambilanObatController extends Controller
     {
         $ambil_obat = Pegawai::all();
         $ambil_obat = Resep::all();
-        return view('pengambilan-obat.form', compact('ambil_obat'));
+        return view('super_admin.pengambilan-obat.form', compact('ambil_obat'));
     }
 
     /**
@@ -34,9 +36,12 @@ class PengambilanObatController extends Controller
      */
     public function store(Request $request)
     {
+        $gen_idAmbil = IdGenerator::generate(['table' => 'pengambilan_obats','field' => 'id_ambil', 'length' => 8, 'prefix' => 'PP-']);
+
+
         $ambil_obat = new PengambilanObat;
 
-        $ambil_obat->id_ambil = $request->ID_AMBIL;
+        $ambil_obat->id_ambil = $gen_idAmbil;
         $ambil_obat->tgl = $request->TGL;
         $ambil_obat->nip = $request->nip;
         $ambil_obat->no_resep = $request->no_resep;
@@ -62,7 +67,7 @@ class PengambilanObatController extends Controller
         $ambil_obat = PengambilanObat::find($id);
         $ambil_obat = Pegawai::all();
         $ambil_obat = Resep::all();
-        return view('pengambilan-obat.edit', compact('ambi_obat'));
+        return view('super_admin.pengambilan-obat.edit', compact('ambi_obat'));
     }
 
     /**

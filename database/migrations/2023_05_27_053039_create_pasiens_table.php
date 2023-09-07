@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
-            $table->integer('no_kartu')->unique();
+            $table->string('no_kartu')->unique();
             $table->string('nik_pas');
             $table->string('nm_pas');
             $table->string('umur_pas');

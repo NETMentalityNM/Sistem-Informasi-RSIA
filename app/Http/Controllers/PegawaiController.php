@@ -18,7 +18,7 @@ class PegawaiController extends Controller
     {
         $nomor = 1;
         $pegawai = Pegawai::all();
-        return view('pegawai.index', compact('nomor', 'pegawai'));
+        return view('super_admin.pegawai.index', compact('nomor', 'pegawai'));
     }
 
     /**
@@ -27,7 +27,7 @@ class PegawaiController extends Controller
     public function create()
     {
         $pegawai = Jabatan::all();
-        return view('pegawai.form', compact('pegawai'));
+        return view('super_admin.pegawai.form', compact('pegawai'));
     }
 
     /**
@@ -65,7 +65,7 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::find($id);
         $jabatan = Jabatan::all();
-        return view('pegawai.edit', compact('pegawai', 'jabatan'));
+        return view('super_admin.pegawai.edit', compact('pegawai', 'jabatan'));
     }
 
     /**

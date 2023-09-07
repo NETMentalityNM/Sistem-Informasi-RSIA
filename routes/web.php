@@ -7,11 +7,12 @@ use App\Http\Controllers\ResepController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\PengambilanObatController;
-use App\Http\Controllers\JenisDokterController;
+use App\Http\Controllers\JenisDokterController;      // NOT DONE
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\UsersController;
-
+use App\Models\PengambilanObat;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,18 +32,23 @@ use Illuminate\Support\Facades\Route;
 //
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
-Route::get('/rsia',[UserController::class, 'user']);
 
 Route::POST('https://language.googleapis.com/v1/documents:analyzeEntities?key=AIzaSyAsVcS6nGaqjVsNxdzAkxOusPo2ipiBpOE');
 
 
+Route::middleware('auth')->group(function() {
+    Route::post('/pendaftaran', [PendaftaranController::class, 'index'])->middleware('userAkses:administrasi');
+    Route::post('/poliumum', [PoliController::class, 'poliumum'])->middleware('userAkses:poliumum');
+    Route::post('/polikhusus', [PoliController::class, 'polikhusus'])->middleware('userAkses:polikhusus');
+    Route::post('/pengambilan', [PengambilanObat::class, 'klinik'])->middleware('userAkses:klinik');
+});
 
 //Route Tampilan Controller
 
 
-Route::middleware('auth')->group(function() {
+
     //Manajemen Pasien Route
     Route::get('/pasien',           [PasienController::class, 'index']);
     Route::get('/pasien/form',      [PasienController::class, 'create']);
@@ -50,6 +56,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/pasien/edit/{id}', [PasienController::class, 'edit']);
     Route::put('/pasien/{id}',      [PasienController::class, 'update']);
     Route::delete('/pasien/{id}',   [PasienController::class, 'destroy']);
+
+    //Search Pasien
+    Route::get( '/pasien' ,  [PasienController::class,'search'] );
 
     //Manajemen Rekam-Medik
     Route::get('/rekam-medik', [RekamMedikController::class, 'index']);
@@ -116,4 +125,4 @@ Route::middleware('auth')->group(function() {
     Route::put('/jabatan/{id}', [JabatanController::class, 'update']);
     Route::delete('/jabatan/{id}', [JabatanController::class, 'destroy']);
 
-});
+

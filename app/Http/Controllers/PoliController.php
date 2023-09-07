@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Poli;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class PoliController extends Controller
 {
@@ -14,7 +15,7 @@ class PoliController extends Controller
     {
         $nomor = 1;
         $poli = Poli::all();
-        return view('poli.index', compact('nomor', 'poli'));
+        return view('super_admin.poli.index', compact('nomor', 'poli'));
 
     }
 
@@ -23,7 +24,7 @@ class PoliController extends Controller
      */
     public function create()
     {
-        return view('poli.form');
+        return view('super_admin.poli.form');
     }
 
     /**
@@ -31,9 +32,12 @@ class PoliController extends Controller
      */
     public function store(Request $request)
     {
+        $gen_idPoli = IdGenerator::generate(['table' => 'polis','field' => 'id_poli', 'length' => 8, 'prefix' => 'PP-']);
+
+
         $poli = new Poli;
 
-        $poli->id_poli = $request->ID_POLI;
+        $poli->id_poli = $gen_idPoli;
         $poli->nm_poli = $request->NM_POLI;
         $poli->save();
 
@@ -54,7 +58,7 @@ class PoliController extends Controller
     public function edit(string $id)
     {
         $poli = Poli::find($id);
-        return view('poli.edit', compact('poli'));
+        return view('super_admin.poli.edit', compact('poli'));
     }
 
     /**
@@ -81,4 +85,4 @@ class PoliController extends Controller
 
         return redirect('/poli');
     }
-}
+    }

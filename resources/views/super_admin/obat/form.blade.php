@@ -1,36 +1,41 @@
 @extends('layouts.master')
-@section('judul', 'Form Rekam Medik')
+@section('judul', 'Form Data Obat')
 @section('isi')
 <main role="main" class="main-content">
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-12">
-          <h2 class="page-title">Form Poli</h2>
-          <p>Jikalau ada penambahan poli, silahkan isi dibawah</p>
+          <h2 class="page-title">Form Data Obat</h2>
           <div class="card shadow mb-4">
             <div class="card-header">
-              <strong class="card-title">Data Poli</strong>
+              <strong class="card-title">Data Lengkap Obat</strong>
             </div>
             <div class="card-body">
-              <form method="POST" action="/poli">
+              <form method="POST" action="/obat">
                 @csrf
               <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label for="example-email">ID Poli</label>
-                        <input type="text" name="ID_POLI" name="example-email" class="form-control" placeholder="Masukkan No. Rekam Medik" required>
-                    </div>
+                  <div class="form-group mb-3">
+                    <label for="example-email">Nama Obat</label>
+                    <input type="text" name="NM_OBAT" name="example-email" class="form-control" placeholder="Masukkan NIK Pasien" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="example-password">Tanggal Kadarluasa</label>
+                    <input type="date" name="TGL_KADARLUASA" class="form-control" placeholder="Masukkan Nama Pasien" required>
+                  </div>
                 </div> <!-- /.col -->
                 <div class="col-md-6">
-                  <div class="form-group mb-3">
-                    <label for="example-palaceholder">Nama Poli</label>
-                    <input type="text" name="NM_POLI" class="form-control" placeholder="Diagnosa pasien" required>
-                  </div>
+                    <div class="form-group mb-3">
+                      <label for="example-palaceholder">Satuan</label>
+                      <input type="text" name="SATUAN" class="form-control" placeholder="Usia Pasien" required>
+                    </div>
+                  
+
                 </div>
               </div>
               <button type="submit" class="btn mb-2 btn-primary">Tambahkan</button>
-              </form>
-            </div>
+            </form>
+          </div>
           </div> <!-- end section -->
         </div> <!-- .col-12 -->
       </div> <!-- .row -->

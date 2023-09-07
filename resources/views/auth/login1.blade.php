@@ -38,6 +38,14 @@
                 </svg>
               </a>
               <h1 class="h6 mb-3">Sign in</h1>
+              @if ($errors->any())
+                  <div class="alert alert-danger">
+                    <ul>
+                      @foreach ($errors->all() as $item)
+                        <li>{{$item}}</li>
+                    @endforeach</ul>
+                  </div>
+              @endif
               <div class="form-group">
                 <label for="email" class="sr-only">{{ __('Email Address') }}</label>
                 <input type="email" id="email" name="email" class="form-control form-control-lg @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Email address" required autocomplete="email" autofocus="">

@@ -17,10 +17,6 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group mb-3">
-                    <label for="simpleinput">ID Ambil</label>
-                    <input type="text" name="ID_AMBIL" class="form-control" placeholder="Masukkan ID Pengambilan Obat" required>
-                  </div>
-                  <div class="form-group mb-3">
                     <label for="example-email">Tanggal Pengambilan Obat</label>
                     <input type="date" name="TGL" class="form-control"  required>
                   </div>
@@ -39,7 +35,10 @@
                     <label for="example-textarea">No. Resep</label>
                     <select name="no_resep" class="form-control" id="" >
                         <option value="">--Pilih No. Resep--</option>
-                        <option value="{{$ao->id}}">{{$ao->nip}}  {{$ao->nm_pegawai}}</option>
+                        @foreach ($ambil_obat as $item)
+                            
+                        <option value="{{$item->id}}">{{$item->nip}}  {{$item->nm_pegawai}}</option>
+                        @endforeach
                         
                     </select>
                   </div>

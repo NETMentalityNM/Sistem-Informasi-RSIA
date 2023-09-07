@@ -23,4 +23,9 @@ class RekamMedik extends Model
     {
         return $this->belongsTo(Resep::class);
     }
+    public function pasien()
+    {
+        return $this->hasOne(Pasien::class, "no_kartu", "no_kartu");
+    }
+    
 }

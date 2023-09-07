@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->string('Username')->after('name');
-            
-
+        Schema::create('obats2', function (Blueprint $table) {
+            $table->id();
+            $table->integer('kd_obat');
+            $table->string('nm_obat');
+            $table->timestamps();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('obats2');
     }
 };

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Obat;
 use App\Models\Pegawai;
+use App\Models\Poli;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -28,8 +29,9 @@ class HomeController extends Controller
     {
         $pegawai = Pegawai::count();
         $obat    = Obat::count();
+        $poli    = Poli::count();
 
-        return view('beranda', compact('pegawai', 'obat'));
+        return view('beranda', compact('pegawai', 'obat', 'poli'));
     }
 
     public function user()

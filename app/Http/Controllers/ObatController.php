@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Obat;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+
 
 class ObatController extends Controller
 {
@@ -15,7 +17,7 @@ class ObatController extends Controller
     {
         $nomor = 1;
         $obat = Obat::all();
-        return view('obat.index', compact('nomor', 'obat'));
+        return view('super_admin.obat.index', compact('nomor', 'obat'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ObatController extends Controller
      */
     public function create()
     {   
-        return view('obat.form');
+        return view('super_admin.obat.form');
     }
 
     /**
@@ -31,9 +33,11 @@ class ObatController extends Controller
      */
     public function store(Request $request)
     {
+        $gen_kdObat = IdGenerator::generate(['table' => 'obats','field' => 'kd_obat', 'length' => 8, 'prefix' => 'PP-']);
+
         $obat = new Obat();
 
-        $obat->kd_obat = $request->KD_OBAT;
+        $obat->kd_obat = $gen_kdObat;
         $obat->nm_obat = $request->NM_OBAT;
         $obat->tgl_kadarluasa = $request->TGL_KADARLUASA;
         $obat->satuan = $request->SATUAN;
@@ -56,7 +60,7 @@ class ObatController extends Controller
     public function edit(string $id)
     {
         $obat = Obat::find($id);
-        return view('obat.edit', compact('obat'));
+        return view('super_admin.obat.edit', compact('obat'));
     }
 
     /**

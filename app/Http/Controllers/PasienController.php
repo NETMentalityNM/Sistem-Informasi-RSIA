@@ -6,6 +6,7 @@ use App\Models\Pasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Image;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 // use Image;
 
@@ -15,12 +16,28 @@ class PasienController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $nomor = 1;
-        $pasien = Pasien::all();
-        $pasien = Pasien::where('nik_pas', '>', 100)->paginate(5);
-        return view('pasien.index', compact('nomor', 'pasien'));
+        if ($request->has('search')) {
+                    $pasien = Pasien::where('nm_pas','LIKE', '%'.$request->search.'%')->paginate(5);
+                }
+                else {
+                    $pasien = Pasien::paginate(5);                
+                }
+        // $pasien = Pasien::where('nik_pas', '>', 100)->paginate(5);
+        return view('super_admin.pasien.index', compact('nomor', 'pasien'));
+    } 
+    function administrasi(Request $request)
+    {
+        $nomor = 1;
+        if ($request->has('search')) {
+                    $pasien = Pasien::where('nm_pas','LIKE', '%'.$request->search.'%')->paginate(5);
+                }
+                else {
+                    $pasien = Pasien::paginate(5);                
+                }
+        return view('Pendaftaran-pasien.index', compact('nomor', 'pasien'));
     }
     
     /**
@@ -28,7 +45,7 @@ class PasienController extends Controller
      */
     public function create()
     {
-        return view('pasien.form');
+        return view('super_admin.pasien.form');
     }
 
     /**
@@ -52,10 +69,11 @@ class PasienController extends Controller
         //     $constraint->aspectRatio();
         // })->save('images/foto/'.$nama_foto);
 
+        $gen_no_kartu = IdGenerator::generate(['table' => 'pasiens','field' => 'no_kartu', 'length' => 8, 'prefix' => 'RSIA-']);
 
         $pasien = new Pasien;
 
-        $pasien->no_kartu      = $request->NO_KARTU;
+        $pasien->no_kartu      = $gen_no_kartu;
         $pasien->nik_pas       = $request->NIK_PAS;
         $pasien->nm_pas        = $request->NM_PAS;
         $pasien->umur_pas      = $request->UMUR_PAS;
@@ -89,7 +107,7 @@ class PasienController extends Controller
     public function edit(string $id)
     {
         $pasien = Pasien::find($id);
-        return view('pasien.edit', compact('pasien'));
+        return view('super_admin.pasien.edit', compact('pasien'));
     }
 
     /**
@@ -99,7 +117,6 @@ class PasienController extends Controller
     {
         $pasien = Pasien::find($id);
 
-        $pasien->no_kartu      = $request->NO_KARTU;
         $pasien->nik_pas       = $request->NIK_PAS;
         $pasien->nm_pas        = $request->NM_PAS;
         $pasien->umur_pas      = $request->UMUR_PAS;
@@ -125,11 +142,18 @@ class PasienController extends Controller
 
         return redirect('/pasien');
     }
+    
 
-    public function aku()
-    {
-        
-        return view('user.index');
-    }
+    // public function search(Request $request){
+    //     if ($request->has('search')) {
+    //         $pasien = Pasien::where('nik_pas','LIKE', '%'.$request->search.'%')->get();
+    //     }
+    //     else {
+    //         $pasien = Pasien::all();
+    //     }
 
+    //     return view('pasien.index',['pasien' => $pasien]);
+    // }
+
+    
 }

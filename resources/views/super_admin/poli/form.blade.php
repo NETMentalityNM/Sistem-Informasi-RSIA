@@ -5,53 +5,24 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-12">
-          <h2 class="page-title">Form Rekam Medik</h2>
-          <p class="text-muted">Disini Anda mengisi data Rekam Medik yang dialami oleh pasien</p>
+          <h2 class="page-title">Form Poli</h2>
+          <p>Jikalau ada penambahan poli, silahkan isi dibawah</p>
           <div class="card shadow mb-4">
             <div class="card-header">
-              <strong class="card-title">Data Lengkap Pasien</strong>
+              <strong class="card-title">Data Poli</strong>
             </div>
             <div class="card-body">
-              <form method="POST" action="/rekam-medik">
+              <form method="POST" action="/poli">
                 @csrf
               <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label for="example-email">No. Rekam Medik</label>
-                        <input type="text" name="NO_REKMED" name="example-email" class="form-control" placeholder="Masukkan No. Rekam Medik" required>
+                      <label for="example-palaceholder">Nama Poli</label>
+                      <input type="text" name="NM_POLI" class="form-control" placeholder="Diagnosa pasien" required>
                     </div>
-                    <div class="form-group mb-3">
-                      <label for="simpleinput">No. Kartu</label>
-                      <input type="text" name="NO_KARTU" class="form-control" placeholder="Masukkan Nomor Kartu" required>
-                    </div>
-                  <div class="form-group mb-3">
-                    <label for="example-password">Tanggal Berobat</label>
-                    <input type="date" name="TGL_BEROBAT" class="form-control" required>
-                  </div>
                 </div> <!-- /.col -->
                 <div class="col-md-6">
-                  <div class="form-group mb-3">
-                    <label for="example-palaceholder">Diagnosa</label>
-                    <input type="text" name="DIAGNOSA" class="form-control" placeholder="Diagnosa pasien" required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="example-textarea">NIP</label>
-                    <select name="nip" class="form-control" id="" >
-                        <option value="">--Pilih NIP--</option>
-                        @foreach ($rekam_medik as $data)
-                        <option value="{{$data->id}}">{{$data->nip}}  {{$data->nm_pegawai}}</option>
-                        @endforeach
-                    </select>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="example-textarea">ID Poli</label>
-                    <select name="id_poli" class="form-control" id="" >
-                        <option value="">--Pilih ID--</option>
-                        @foreach ($rekam_medik as $item)
-                        <option value="{{$item->id}}">{{$item->id_poli}}  {{$item->nm_poli}}</option>
-                        @endforeach
-                    </select>
-                  </div>
+                  
                 </div>
               </div>
               <button type="submit" class="btn mb-2 btn-primary">Tambahkan</button>

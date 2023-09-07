@@ -37,35 +37,49 @@
           </div>
           <div class="form-group">
             <label for="inputEmail4">Nama</label>
-            <input type="email" id="name"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" id="inputEmail4" autofocus>
-          </div>
+            <input type="text" id="name"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" id="inputEmail4" autofocus>
+            @error('name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror  
+        </div>
           <div class="form-group">
             <div class="form-group ">
               <label for="firstname">Email</label>
-              <input type="text" id="firstname" class="form-control mr-5">
+              <input type="email" id="email"  class="form-control mr-5 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
             </div>
-            
+            @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
           </div>
           <hr class="my-4">
           <div class="row mb-4">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="inputPassword5">New Password</label>
-                <input type="password" class="form-control" id="inputPassword5">
-              </div>
+                <label for="password">New Password</label>
+                <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            </div>
               <div class="form-group">
-                <label for="inputPassword6">Confirm Password</label>
-                <input type="password" class="form-control" id="inputPassword6">
+                <label for="password-confirm">Confirm Password</label>
+                <input id="password-confirm" name="password_confirmation" type="password" class="form-control" id="" required autocomplete="new-password">
               </div>
             </div>
             <div class="col-md-6">
-              <p class="mb-2">Password requirements</p>
-              <p class="small text-muted mb-2"> To create a new password, you have to meet all of the following requirements: </p>
+              <p class="mb-2">Persyaratan Password</p>
+              <p class="small text-muted mb-2"> Untuk membuat kata sandi baru, Anda harus memenuhi semua persyaratan berikut: </p>
               <ul class="small text-muted pl-4 mb-0">
-                <li> Minimum 8 character </li>
-                <li>At least one special character</li>
-                <li>At least one number</li>
-                <li>Can’t be the same as a previous password </li>
+                <li> Minimal 8 karakter </li>
+                <li>Tambahkan satu karakter khusus</li>
+                <li>Tambahkan satu nomor</li>
               </ul>
             </div>
           </div>

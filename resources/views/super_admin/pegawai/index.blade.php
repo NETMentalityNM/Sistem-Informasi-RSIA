@@ -50,7 +50,7 @@
                   <td>{{$pgw->umur_pegawai}}</td>
                   <td>{{$pgw->alamat_pegawai}}</td>
                   <td>{{$pgw->hp_pegawai}}</td>
-                  <td>{{$pgw->jabatan->id_jabatan}}</td>
+                  <td>{{$pgw->jabatan->posisi_jabatan}}</td>
                   
                   <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="text-muted sr-only">Action</span>
